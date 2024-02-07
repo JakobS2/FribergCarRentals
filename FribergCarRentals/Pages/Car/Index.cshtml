@@ -1,0 +1,38 @@
+﻿@page "/"
+@model FribergCarRentals.Pages.Car.IndexModel
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+
+@if (HttpContext.Session.GetString("IsAdmin") == "IsAdmin")
+{
+	<p>
+		<a class="create" asp-page="Create">Add Car</a>
+	</p>
+}
+<table class="list">
+	<tbody>
+		@foreach (var item in Model.Car)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Make) @Html.DisplayFor(modelItem => item.Model), @Html.DisplayFor(modelItem => item.Year)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Price) SEK / day
+				</td>
+				<td>
+
+					<a class="neutralBtn" href="@item.Image" target="_blank">Image</a>
+					<a class="defaultButton" asp-page="/Rental/Create" asp-route-id="@item.CarId">Select</a>
+					@if (HttpContext.Session.GetString("IsAdmin") == "IsAdmin"){
+						<a class="editBtn" asp-page="./Edit" asp-route-id="@item.CarId">Edit</a>
+						<a class="warningBtn" asp-page="./Delete" asp-route-id="@item.CarId">X</a>
+					}
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

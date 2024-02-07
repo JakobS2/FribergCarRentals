@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - FribergCarRentals</title>
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+	<header>
+			<img class="hLogo" src="~/Logo.png" alt="logo" >
+		
+		<nav class="navbar">
+			<ul class="nav_links">
+				<li><a class="navLinks" asp-area="" asp-page="/Car/Index">Our Cars</a></li>
+				<li><a class="navLinks" asp-area="" asp-page="/Rental/Index">Rentals</a></li>
+				@if (Context.Session.GetString("IsAdmin") == "IsAdmin")
+				{
+					<li><a class="navLinks" asp-area="" asp-page="/User/Index">Users</a></li>
+				}
+
+			</ul>
+		</nav>
+		@if (String.IsNullOrEmpty(Context.Session.GetString("User")))
+		{
+			<a class="loginBtn" asp-area="" asp-page="/User/Login">Login</a>
+		}
+		else
+		{
+			<a class="loginBtn" asp-area="" asp-page="/User/Login">Logout</a>
+		}
+
+	</header>
+	<div >
+		<main role="main" >
+			@RenderBody()
+		</main>
+	</div>
+@* 
+	<footer >
+		<div >
+			&copy; 2024 - FribergCarRentals - <a asp-area="" asp-page="/Privacy">Privacy</a>
+		</div>
+	</footer> *@
+
+	<script src="~/js/site.js" asp-append-version="true"></script>
+
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,44 @@
+﻿@page
+@model FribergCarRentals.Pages.Rental.RentalConfirmationModel
+
+@{
+    ViewData["Title"] = "RentalConfirmation";
+}
+
+
+
+<div class ="row">
+	<h1>Booking Successful!</h1>
+    <h4>Rental</h4>
+    <hr />
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Rental.StartDate):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Rental.StartDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Rental.EndDate):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Rental.EndDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Rental.Car):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Rental.Car.Make) @Html.DisplayFor(model => model.Rental.Car.Model), @Html.DisplayFor(model => model.Rental.Car.Year)
+        </dd>
+        <dt>
+            Rented by:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Rental.User.Name)
+        </dd>
+    </dl>
+	<a class="backTo" asp-page="./Index">Back to List</a>
+</div>
+<div>
+   
+</div>

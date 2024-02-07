@@ -1,0 +1,65 @@
+﻿@page
+@model FribergCarRentals.Pages.Rental.CreateModel
+
+@{
+	ViewData["Title"] = "Create";
+}
+
+
+<hr />
+<div class="row">
+	<div>
+		<h2 class="divTitle">Create</h2>
+		<form method="post">
+
+			<div class="group">
+				<label asp-for="rental.StartDate">From:</label> <br />
+				<input asp-for="rental.StartDate" /><br />
+				<span class="validation" asp-validation-for="rental.StartDate"></span><br />
+				<span class="validation"> @Html.ValidationMessage("ErrorStartDate")</span>
+			</div>
+			<div class="group">
+				<label asp-for="rental.EndDate">To:</label> <br />
+				<input asp-for="rental.EndDate" /><br />
+				<span class="validation" asp-validation-for="rental.EndDate"></span><br />
+				<span class="validation"> @Html.ValidationMessage("ErrorEndDate")</span>
+			</div>
+			@if (HttpContext.Session.GetString("IsAdmin") == "IsAdmin")
+			{
+				<div class="group">
+					<label asp-for="rental.UserId"></label><br />
+					<select asp-for="rental.UserId" asp-items="ViewBag.Users"></select><br />
+					<span class="validation" asp-validation-for="rental.UserId"></span>
+				</div>
+				
+			}
+			else
+			{
+				<div class="group">
+					<input asp-for="rental.UserId" type="hidden" />
+					<span class="validation" asp-validation-for="rental.UserId"></span>
+				</div>
+			}
+
+			<div class="group">
+				<label asp-for="rental.CarId">Car:</label><br />
+				<select asp-for="rental.CarId" asp-items="ViewBag.Cars">
+					<option disabled selected>--Select Car--</option>
+				</select><br />
+				<span class="validation" asp-validation-for="rental.CarId"></span>
+			</div>
+
+			<div class="group">
+				<input class="submit" type="submit" value="Create" />
+			</div>
+		</form>
+		<a class="backTo" asp-page="Index">Back to List</a>
+	</div>
+</div>
+
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

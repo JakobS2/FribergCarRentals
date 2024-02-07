@@ -1,0 +1,66 @@
+﻿@page
+@model FribergCarRentals.Pages.Rental.EditModel
+
+@{
+	ViewData["Title"] = "Edit";
+}
+
+<hr />
+<div class="row">
+	<h2 class="divTitle">Edit</h2>
+
+	<div>
+		<form method="post">
+			<div asp-validation-summary="ModelOnly"></div>
+			<input type="hidden" asp-for="Rental.RentalId" />
+			<div class="group">
+				<label asp-for="Rental.StartDate"></label> <br />
+				<input asp-for="Rental.StartDate" />
+				<span asp-validation-for="Rental.StartDate"></span><br />
+				<span class="validation"> @Html.ValidationMessage("ErrorStartDate")</span>
+			</div>
+			<div class="group">
+				<label asp-for="Rental.EndDate"></label><br />
+				<input asp-for="Rental.EndDate" />
+				<span asp-validation-for="Rental.EndDate"></span><br />
+				<span class="validation"> @Html.ValidationMessage("ErrorEndDate")</span>
+			</div>
+			<div class="group">
+				<label asp-for="Rental.CarId"></label><br />
+				<select asp-for="Rental.CarId" asp-items="ViewBag.Cars"></select>
+				<span asp-validation-for="Rental.CarId"></span>
+			</div>
+			@if (HttpContext.Session.GetString("IsAdmin") == "IsAdmin")
+			{
+				<label asp-for="Rental.UserId"></label>
+
+				<br />
+				<select asp-for="Rental.UserId" asp-items="ViewBag.Users"></select>
+				<span asp-validation-for="Rental.UserId"></span>
+			}
+			else
+			{
+				<div class="group">
+					<input asp-for="Rental.UserId" type="hidden" />
+					<span asp-validation-for="Rental.UserId"></span>
+				</div>
+			}
+
+			<div class="group">
+				<input class="submit" type="submit" value="Save" />
+			</div>
+		</form>
+
+		<div>
+			<a class="backTo" asp-page="./Index">Back to List</a>
+		</div>
+	</div>
+</div>
+
+
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

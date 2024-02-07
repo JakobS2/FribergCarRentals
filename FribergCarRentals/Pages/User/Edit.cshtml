@@ -1,0 +1,42 @@
+﻿@page
+@model FribergCarRentals.Pages.User.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<hr />
+<div class="row">
+    <h1 class="divTitle">Edit</h1>
+
+    <div>
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" ></div>
+            <input type="hidden" asp-for="User.UserId" />
+            <div class="group">
+                <label asp-for="User.Name" class="control-label"></label> <br />
+                <input asp-for="User.Name" class="form-control" /><br />
+                <span class="validation" asp-validation-for="User.Name"></span>
+            </div>
+            <div class="group">
+                <label asp-for="User.Email" class="control-label"></label><br />
+                <input asp-for="User.Email" class="form-control" /><br />
+                <span class="validation" asp-validation-for="User.Email" class="text-danger"></span>
+            </div>
+            <div class="group">
+                <label asp-for="User.Password" class="control-label"></label><br />
+                <input asp-for="User.Password" class="form-control" /><br />
+                <span class="validation" asp-validation-for="User.Password"></span>
+            </div>
+            <div class="group">
+                <input class="submit" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+    <a class="backTo" asp-page="./Index">Back to List</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,118 @@
+﻿@page
+@model FribergCarRentals.Pages.Rental.IndexModel
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+
+<p>
+	<a class="create" asp-page="Create">Rent a Car</a>
+</p>
+
+<h2 class="tableH2">Current:</h2>
+<table class="list">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Rental[0].StartDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Rental[0].EndDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Rental[0].Car.Make)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Rental[0].Car.Model)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Rental[0].User.Name)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.Rental.Where(x => x.EndDate > DateTime.Now))
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.StartDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.EndDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Car.Make)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Car.Model)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.User.Name)
+				</td>
+				<td>
+					<a class="editBtn" asp-page="./Edit" asp-route-id="@item.RentalId">Edit</a>
+					<a button class="warningBtn" asp-page="./Delete" asp-route-id="@item.RentalId">X</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<h2 class="tableH2">History:</h2>
+<table class="list">
+
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Rental[0].StartDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Rental[0].EndDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Rental[0].Car.Make)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Rental[0].Car.Model)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Rental[0].User.Name)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.Rental.Where(x => x.EndDate < DateTime.Now))
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.StartDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.EndDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Car.Make)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Car.Model)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.User.Name)
+				</td>
+				@if ((HttpContext.Session.GetString("IsAdmin") == "IsAdmin"))
+				{
+					<td>
+						<a class="editBtn" asp-page="./Edit" asp-route-id="@item.RentalId">Edit</a>
+						<a button class="warningBtn" asp-page="./Delete" asp-route-id="@item.RentalId">X</a>
+					</td>
+				}
+
+
+			</tr>
+		}
+	</tbody>
+</table>
+

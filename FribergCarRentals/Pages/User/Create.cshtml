@@ -1,0 +1,40 @@
+﻿@page
+@model FribergCarRentals.Pages.User.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<hr />
+<div class="row">
+    <div>
+        <h3>Create new Account</h3>
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" ></div>
+            <div class="group">
+                <label asp-for="User.Name" ></label><br />
+                <input asp-for="User.Name" /><br />
+                <span class="validation" asp-validation-for="User.Name" ></span>
+            </div>
+            <div class="group">
+                <label asp-for="User.Email" ></label><br />
+                <input asp-for="User.Email" /><br />
+                <span class="validation" asp-validation-for="User.Email"></span>
+            </div>
+            <div class="group">
+                <label asp-for="User.Password" ></label><br />
+                <input asp-for="User.Password" /><br />
+                <span class="validation" asp-validation-for="User.Password"></span>
+            </div>
+            <div class="group">
+                <input type="submit" value="Create" class="submit" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

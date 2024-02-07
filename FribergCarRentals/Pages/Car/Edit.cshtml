@@ -1,0 +1,52 @@
+﻿@page
+@model FribergCarRentals.Pages.Car.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<hr />
+<div class="row">
+    <h2 class="divTitle">Edit</h2>
+    <div>
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" ></div>
+            <input type="hidden" asp-for="Car.CarId" />
+            <div class="group">
+                <label asp-for="Car.Make" ></label><br />
+                <input asp-for="Car.Make" /><br />
+                <span class="validation" asp-validation-for="Car.Make" ></span>
+            </div>
+            <div class="group">
+                <label asp-for="Car.Model"></label><br />
+                <input asp-for="Car.Model" /><br />
+                <span class="validation" asp-validation-for="Car.Model"></span>
+            </div>
+            <div class="group">
+                <label asp-for="Car.Year"></label><br />
+                <input asp-for="Car.Year" /><br />
+                <span class="validation" asp-validation-for="Car.Year"></span>
+            </div>
+            <div class="group">
+                <label asp-for="Car.Price"></label><br />
+                <input asp-for="Car.Price" /><br />
+                <span class="validation" asp-validation-for="Car.Price"></span>
+            </div>
+            <div class="group">
+                <label asp-for="Car.Image">Image(url)</label><br />
+                <input asp-for="Car.Image" /><br />
+                <span class="validation" asp-validation-for="Car.Image"></span>
+            </div>
+            <div class="group">
+                <input type="submit" value="Save" class="submit" />
+            </div>
+        </form>		
+     <a class="backTo" asp-page="./Index">Go back</a>
+   
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

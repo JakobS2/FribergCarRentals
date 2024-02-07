@@ -1,0 +1,43 @@
+﻿@page
+@model FribergCarRentals.Pages.User.LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+
+<hr />
+<div class="row">
+	<h1>Login</h1>
+    <div class="col-md-4">
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" ></div>
+
+            <div class="group">
+                <label asp-for="User.Email" >Email:</label><br />
+                <input asp-for="User.Email" /><br />
+                <span class="validation" asp-validation-for="User.Email"></span><br /> 
+                <span class="validation"> @Html.ValidationMessage("ErrorEmail")</span>
+            </div>
+            <div class="group">
+                <label asp-for="User.Password" >Password:</label><br />
+                <input asp-for="User.Password" /><br />
+                <span class="validation" asp-validation-for="User.Password" ></span>
+                <span class="validation"> @Html.ValidationMessage("ErrorPassword")</span>
+            </div>
+            <div class="group">
+                <input type="submit" value="Login" class="submit" />
+            </div>
+        </form>
+    </div>
+    <p>
+		<a class="backTo" asp-page="Create">Register New Account</a>
+	</p>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

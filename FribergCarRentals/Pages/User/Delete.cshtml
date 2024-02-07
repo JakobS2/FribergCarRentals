@@ -1,0 +1,28 @@
+﻿@page
+@model FribergCarRentals.Pages.User.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<div class="row">
+    <h1 class="divTitle">Delete</h1>
+    <h4>Are you sure you want to delete this?</h4>
+
+    <hr />
+    <dl>
+        <dd>
+            @Html.DisplayNameFor(model => model.User.Name): @Html.DisplayFor(model => model.User.Name)
+        </dd>
+        <dd class="email a">
+            @Html.DisplayNameFor(model => model.User.Email): @Html.DisplayFor(model => model.User.Email)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="User.UserId" />
+        <input class="warningBtn" type="submit" value="Delete" /><br />
+        <a class="backTo" asp-page="./Index">Back to List</a>
+    </form>
+</div>
